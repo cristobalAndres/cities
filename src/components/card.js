@@ -4,7 +4,7 @@ import Moment from 'react-moment';
 import 'moment-timezone';
 
 import { Card, CardText, CardTitle } from 'material-ui/Card';
-
+// Estructura basica para mostrar la información de la ciudad
 export default class CityCard extends React.Component {
   render() {
     return (
