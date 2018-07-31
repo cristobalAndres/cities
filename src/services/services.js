@@ -1,7 +1,7 @@
 
 // Servicio que consulta la información de la ciudad
 function getCities() {
-  return fetch('https://calm-cliffs-33202.herokuapp.com')
+  return fetch('https://cities-acid-lab.herokuapp.com')
   .then((data) => {
     return data.json();
   })

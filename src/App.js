@@ -12,18 +12,19 @@ class App extends Component {
       cities: []
     };
     // Interval para consultar cada 10 segundos el servicio de información de las ciudades
-    // setInterval(() => {
-    //   getCities().then((data) => {
-    //     console.log(data);
-    //     this.setState({
-    //       cities: data
-    //     })
-    //   });
-    // }, 10000)
+    setInterval(() => {
+      getCities().then((data) => {
+        console.log(data);
+        this.setState({
+          cities: data
+        })
+      });
+    }, 10000)
+    // Inicializo con la data
     getCities().then((data) => {
       console.log(data);
       this.setState({
-        cities: data
+        cities: data,
       })
     });
   }
