@@ -37,7 +37,7 @@ class App extends Component {
       <MuiThemeProvider>
         <div className="row">
           {this.renderCities()}
-          <Websocket url='ws://api-acid-lab.herokuapp.com'
+          <Websocket url='wss://api-acid-lab.herokuapp.com'
               onMessage={this.cities.bind(this)}/>
         </div>
       </MuiThemeProvider>
