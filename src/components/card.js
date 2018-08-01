@@ -16,6 +16,9 @@ export default class CityCard extends React.Component {
             <div className="col-xs-12 col-sm-6">Hora: <Moment unix tz={this.props.city.timezone} format="HH:mm">{this.props.city.currently.time}</Moment></div>
             <div className="col-xs-12 col-sm-6">Temperatura: {this.props.city.currently.temperature}</div>
           </div>
+          <div className="row">
+            <div className="col-xs-12 col-sm-6">{this.props.city.currently.summary}</div>
+          </div>
         </Card>
       </div>
     );
