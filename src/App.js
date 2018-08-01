@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 // Componente con la estructura basica de las tarjetas de información de las ciudades
 import CityCard from './components/card';
+import CardLoading from './components/card-loading';
 // import {getCities} from './services/services';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -25,11 +26,17 @@ class App extends Component {
   renderCities() {
     // Se recorre la información de las ciudades y 
     // se crea tarjeta con la información correspondiente a las ciudades
-    return this.state.cities.map((city, index) => {
+    if (this.state.cities.length === 0) {
       return (
-        <CityCard city={city} index={index} key={index}></CityCard>
-      )
-    });
+        <CardLoading></CardLoading>
+      );
+    } else {
+      return this.state.cities.map((city, index) => {
+        return (
+          <CityCard city={city} index={index} key={index}></CityCard>
+        )
+      });
+    }
   }
 
   render() {
