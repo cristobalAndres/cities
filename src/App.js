@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import './App.css';
 // Componente con la estructura basica de las tarjetas de información de las ciudades
 import CityCard from './components/card';
-import {getCities} from './services/services';
+// import {getCities} from './services/services';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+import Websocket from 'react-websocket';
 
 class App extends Component {
   constructor(props) {
@@ -11,25 +13,16 @@ class App extends Component {
     this.state = {
       cities: []
     };
-    // Interval para consultar cada 10 segundos el servicio de información de las ciudades
-    setInterval(() => {
-      getCities().then((data) => {
-        console.log(data);
-        this.setState({
-          cities: data
-        })
-      });
-    }, 10000)
-    // Inicializo con la data
-    getCities().then((data) => {
-      console.log(data);
-      this.setState({
-        cities: data,
-      })
-    });
   }
 
-  cities() {
+  cities(data) {
+    // Se obtiene la información de las ciudades
+    this.setState({
+      cities: JSON.parse(data),
+    })
+  }
+
+  renderCities() {
     // Se recorre la información de las ciudades y 
     // se crea tarjeta con la información correspondiente a las ciudades
     return this.state.cities.map((city, index) => {
@@ -43,7 +36,9 @@ class App extends Component {
     return (
       <MuiThemeProvider>
         <div className="row">
-          {this.cities()}
+          {this.renderCities()}
+          <Websocket url='ws://api-acid-lab.herokuapp.com'
+              onMessage={this.cities.bind(this)}/>
         </div>
       </MuiThemeProvider>
     );
